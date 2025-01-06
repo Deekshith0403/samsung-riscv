@@ -1,4 +1,11 @@
 # samsung-riscv
+This course teaches users about VLSI chip design and RISC-V using open-source tools and is based on the RISC-V architecture. Kunal Ghosh Sir is the workshop's instructor.
+## Profile Details:
+##### Name: Deekshith K M
+##### College: Vidyavardhaka College of Engineering
+##### Email: deekshithkm2003@gmail.com
+##### GitHub Profile: Deekshith0403
+##### LinkedIN: www.linkedin.com/in/deekshith-k-m 
 ## C and RISC-V Programming Labs
 This repository provides a detailed guide to compiling C programs and generating assembly code using both the standard GCC compiler and the RISC-V GCC compiler. It covers all essential steps and explanations for understanding the compilation and debugging workflows.
 ### Lab 1: Working with C Language
