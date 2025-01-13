@@ -6,6 +6,10 @@ This course teaches users about VLSI chip design and RISC-V using open-source to
 ##### Email: deekshithkm2003@gmail.com
 ##### GitHub Profile: Deekshith0403
 ##### LinkedIN: www.linkedin.com/in/deekshith-k-m 
+<details>
+<summary><b>Task 1:</b>Task 1: Review lab videos on C programming and RISC-V architecture. Perform the task of compiling C code using both the GCC compiler and the RISC-V compiler, demonstrating an understanding of the compilation process for each.simulator</summary>   
+<br>
+
 ##### Task 1: Review lab videos on C programming and RISC-V architecture. Perform the task of compiling C code using both the GCC compiler and the RISC-V compiler, demonstrating an understanding of the compilation process for each.
 
 ## C and RISC-V Programming Labs
@@ -66,6 +70,56 @@ This repository provides a detailed guide to compiling C programs and generating
   2. -march=rv64i: Specifies the RISC-V 64-bit integer instruction set architecture.
   3. -O1: Activates basic optimization to improve performance without significantly increasing compilation time.
   4. riscv64-unknown-elf-objdump: This utility disassembles RISC-V binaries, allowing you to analyze and debug the code structure efficiently.
+</details>
+
+<details>   
+<summary><b>Task 2:</b> Task is to refer to C based and RISCV based lab videos and execute the task of compiling the C code using gcc and riscv compiler simulator</summary>   
+<br>
+
+##### Task 2:Task is to refer to C based and RISCV based lab videos and execute the task of compiling the C code using gcc and riscv compiler simulator
+## RISC-V ISA Simulation with SPIKE
+This repository offers guidance on setting up and using SPIKE, a RISC-V ISA simulator, along with the Proxy Kernel (pk) for executing programs. It includes detailed instructions to install the required tools, perform simulations, and debug RISC-V programs efficiently. Follow the steps provided to get started with RISC-V development using SPIKE.
+
+## About SPIKE
+SPIKE is a C++-based open-source simulator for the RISC-V ISA. It provides an efficient environment for testing and debugging RISC-V programs, offering support for both standalone applications and complete operating systems like Linux, without requiring physical hardware.
+
+## Simulating RISC-V with SPIKE
+To verify the setup, compile and run a sample program (`sum_1ton.c`) using both the GCC compiler and the RISC-V toolchain.
+### Using GCC Compiler:
+~~~ sh
+gcc add.c
+./a.out
+~~~
+![VirtualBox_vdsworkshop_14_01_2025_00_04_48](https://github.com/user-attachments/assets/a781d490-d3a0-47a8-a8c7-153ecc32d427)
+
+### Using RISC-V Compiler:
+``` sh
+spike pk add.o
+```
+## Analyzing the Assembly Code
+### Objdump Analysis:
+Generate the corresponding assembly code using the following command:
+``` sh
+riscv64-unknown-elf-objdump -d sum_1ton.o | less
+```
+![VirtualBox_vdsworkshop_13_01_2025_19_54_18](https://github.com/user-attachments/assets/9434e51b-379a-431e-ac19-4fb4e9031e41)
+
+### Debugging with SPIKE:
+1. Open the debugger using the command:
+``` sh
+spike -d pk product.o
+```
+2. Perform debugging operations in the terminal.
+## Optimization Levels
+Snapshots of the RISC-V object dump at various optimization levels (-O1 and -Ofast) offer valuable insights into the impact of compiler optimizations on the generated assembly code. Use these options during compilation to examine the differences.
+
+-O1 Optimization
+
+-Ofast Optimization
+![image](https://github.com/user-attachments/assets/f840b18c-79b8-4e2c-a0d2-1de07ff47a8a)
+
+
+
 
 
 
