@@ -354,5 +354,104 @@ J-type (Jump-type) instructions are used to perform jump operations, typically e
   ![J-type_instruction_format](https://github.com/user-attachments/assets/b367fe02-c1f8-45d0-9f54-020794f17117)
 
 ---
+# RISC-V 15 Unique Instructions and Their 32-Bit Machine Codes
+
+This repository documents 15 unique RISC-V instructions extracted from an object file, along with their corresponding 32-bit machine codes and instruction formats. This serves as a reference for understanding the RISC-V assembly language and its instruction encodings.
+
+---
+
+## List of Instructions and Machine Codes
+
+1. **`lui a0, 0x21` (Load Upper Immediate)**  
+   - **Format**: U-type  
+   - **Opcode**: `0110111`  
+   - **Machine Code**: `0x00021537`  
+   - **Binary**: `00000000001000010101000000110111`
+
+2. **`li a3, 50` (Load Immediate)**  
+   - **Format**: I-type  
+   - **Opcode**: `0010011`  
+   - **Machine Code**: `0x03200693`  
+   - **Binary**: `00000011001000000000011010010011`
+
+3. **`li a2, 5` (Load Immediate)**  
+   - **Format**: I-type  
+   - **Opcode**: `0010011`  
+   - **Machine Code**: `0x00500613`  
+   - **Binary**: `00000000010100000000001100010011`
+
+4. **`li a1, 10` (Load Immediate)**  
+   - **Format**: I-type  
+   - **Opcode**: `0010011`  
+   - **Machine Code**: `0x00a00593`  
+   - **Binary**: `00000000101000000000001100110011`
+
+5. **`addi a0, a0, 352` (Add Immediate)**  
+   - **Format**: I-type  
+   - **Opcode**: `0010011`  
+   - **Machine Code**: `0x16050513`  
+   - **Binary**: `00010110000001010000000001010011`
+
+6. **`j 103f4` (Jump)**  
+   - **Format**: J-type  
+   - **Opcode**: `1101111`  
+   - **Machine Code**: `0x3300006f`  
+   - **Binary**: `00110011000000000000000001101111`
+
+7. **`auipc a5, 0xffff0` (Add Upper Immediate to PC)**  
+   - **Format**: U-type  
+   - **Opcode**: `0010111`  
+   - **Machine Code**: `0xffff0797`  
+   - **Binary**: `11111111111111110000011110010111`
+
+8. **`addi a5, a5, -200` (Add Immediate)**  
+   - **Format**: I-type  
+   - **Opcode**: `0010011`  
+   - **Machine Code**: `0xf3878793`  
+   - **Binary**: `11110011000001111000111110010011`
+
+9. **`beqz a5, 100e0` (Branch if Equal to Zero)**  
+   - **Format**: B-type  
+   - **Opcode**: `1100011`  
+   - **Machine Code**: `0x00078863`  
+   - **Binary**: `00000000000001111000100001100011`
+
+10. **`ret` (Return)**  
+    - **Format**: I-type  
+    - **Opcode**: `1100111`  
+    - **Machine Code**: `0x00008067`  
+    - **Binary**: `00000000000010000000011001110111`
+
+11. **`auipc gp, 0x13` (Add Upper Immediate to PC)**  
+    - **Format**: U-type  
+    - **Opcode**: `0010111`  
+    - **Machine Code**: `0x00013197`  
+    - **Binary**: `00000000000000010011000110010111`
+
+12. **`addi gp, gp, -1756` (Add Immediate)**  
+    - **Format**: I-type  
+    - **Opcode**: `0010011`  
+    - **Machine Code**: `0x92418193`  
+    - **Binary**: `10010010000000011000000110010011`
+
+13. **`sub a2, a2, a0` (Subtract)**  
+    - **Format**: R-type  
+    - **Opcode**: `0110011`  
+    - **Machine Code**: `0x40a60633`  
+    - **Binary**: `01000010100110000000001100011011`
+
+14. **`jal ra, 102d4` (Jump and Link)**  
+    - **Format**: J-type  
+    - **Opcode**: `1101111`  
+    - **Machine Code**: `0x1d4000ef`  
+    - **Binary**: `00011101010000000000000011101111`
+
+15. **`lw a0, 0(sp)` (Load Word)**  
+    - **Format**: I-type  
+    - **Opcode**: `0000011`  
+    - **Machine Code**: `0x00012503`  
+    - **Binary**: `00000000000000010010010010100011`
+
+---
 
 </details>
