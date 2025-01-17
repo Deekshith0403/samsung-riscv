@@ -358,6 +358,8 @@ J-type (Jump-type) instructions are used to perform jump operations, typically e
 
 This repository documents 15 unique RISC-V instructions extracted from an object file, along with their corresponding 32-bit machine codes and instruction formats. This serves as a reference for understanding the RISC-V assembly language and its instruction encodings.
 
+![obj](https://github.com/user-attachments/assets/26ce0a34-2824-4e89-baa8-06f51078857d)
+
 ---
 
 ## List of Instructions and Machine Codes
