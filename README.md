@@ -743,7 +743,7 @@ The IR sensor detects an object in its proximity. When an intruder is detected:
 
 ## Code Implementation:
 The program will be written in C and deployed on the VSD Squadron Mini board. It will read the sensor input and control the LED and buzzer accordingly.
-
+```bash
 #include <ch32v00x.h>
 #include <debug.h>
 
@@ -801,7 +801,7 @@ while(1)
     }
     
 }
-
+```
 ## Applications:
 - Home security systems
 - Automated door security
