@@ -593,113 +593,97 @@ Full 5-stage instruction pipeline and pc-increment description Waveform is given
 </details>
 
 <details>
-<summary><b>Task 5:</b> Intruder Detection System Using IR Sensor & VSDSquadron Mini</summary>   
+<summary><b>Task 5:</b> Intruder Detection System Using ultrasonic Sensor & VSDSquadron Mini</summary>   
 <br>
    
-# 🚀 Intruder Detection System Using IR Sensor & VSDSquadron Mini  
+# Intruder Detection System Using ultrasonic Sensor & VSDSquadron Mini  
 
-![Circuit Diagram](https://github.com/user-attachments/assets/6c766d4c-65ed-44d8-8b0b-a8b40a8989a1)  
+![circuit_diagram](https://github.com/user-attachments/assets/8109545e-439b-4899-a70d-f81834b828c3)
+ 
 
-## 📌 Overview  
+## Overview  
 
-The **Intruder Detection System** is a **real-time security solution** that detects unauthorized movement using an **Infrared (IR) sensor** and processes signals with the **VSDSquadron Mini FPGA board**. Upon detecting an intruder, the system **triggers an alert mechanism** such as a buzzer or LED.  
+The **Intruder Detection System** is a real-time security solution that detects **unauthorized movement using an Ultrasonic Sensor** and processes signals via the **VSDSquadron Mini board**. Upon detecting an intruder, the system **activates an alert mechanism**, signaled by an LED.  
 
-This project provides an **efficient, scalable, and cost-effective security solution** that can be further enhanced with **wireless communication, AI-based recognition, and cloud integration**.  
+Designed for **efficiency, scalability, and cost-effectiveness**, this system can be further **enhanced with wireless communication, AI-based recognition, and cloud integration**, making it a versatile solution for modern security needs.
 
+## Key Features
+
+- ✅ Instant intrusion detection using an ultrasonic sensor for real-time security
+- ✅ High-speed FPGA-based processing ensures rapid threat response
+- ✅ Flexible alert options – Supports buzzer, LED, or wireless notifications
+- ✅ Expandable architecture – Easily integrates AI, cloud, and IoT for advanced monitoring
+- ✅ Cost-effective & power-efficient for long-term, reliable operation
+- ✅ User-friendly setup with minimal maintenance requirements
 ---
 
-## 🎯 Features  
-✔ **Real-time intrusion detection** using an IR sensor  
-✔ **FPGA-based signal processing** for fast response  
-✔ **Customizable alert mechanism** (buzzer, LED, or wireless notification)  
-✔ **Scalable** – Can integrate **AI, cloud, and IoT** for enhanced security  
-✔ **Low-cost & energy-efficient**  
-
----
-
-## 🛠️ Components Required  
+## Components Required  
 
 | **Component**      | **Specification** |
 |--------------------|------------------|
 | VSD Squadron Mini | FPGA Development Board |
-| IR Sensor         | Motion Detection |
-| Buzzer           | Alarm System |
+| ultrasonic Sensor         |Motion & Distance Indicator |
 | LED              | Visual Alert |
-| 330-ohm Resistor | Current Limiting |
+| 220-ohm Resistor | Current Limiting |
 | Jumper Wires     | Circuit Connections |
 | Breadboard       | Prototyping |
 
 ---
 
-## 🔗 Circuit Pin Connections  
+## Circuit Pin Connections  
 
 | **Component** | **Pin on Board** |
 |--------------|------------------|
-| **LED**      | Pin 6 |
-| **Buzzer**   | Pin 5 |
-| **IR Sensor** | Pin 4 |
+| **LED**      | PD3 |
+| **Ultrasonic Sensor** |
+| **VCC**| 3.3V |
+| **ground**| gnd |
+| ** trig pin** | PD4 |
+| ** Echo pin** | PD2 |
 
 ---
 
-## ⚡ How It Works  
+## How It Works
 
-1️⃣ The **IR sensor** detects motion based on **infrared radiation** emitted by objects.  
-2️⃣ If movement is detected, the **VSDSquadron Mini FPGA** processes the signal.  
-3️⃣ The system **triggers an alert** via a **buzzer, LED, or other notification methods**.  
-4️⃣ The system can be enhanced with **AI-based detection, wireless alerts, or smart monitoring**.  
+The system functions by emitting a brief ultrasonic pulse via **PD2** and detecting its echo through **PD4**. **When an object is within range, the pulse is reflected back to the sensor, generating a high signal on the ECHO pin**. Upon detection, the processor activates an LED, notifying the user of the object's presence.
 
 ---
 
-## 📌 Applications  
+## Applications  
+This system is highly adaptable, making it suitable for a wide range of applications:
 
-This system is **versatile** and can be used in various domains:  
-
-### 🔹 **Home Security**  
-- Detects intruders in **houses, apartments, and gated communities**  
-- Can send **real-time alerts** via a **smart home system**  
-
-### 🔹 **Industrial & Commercial Security**  
-- Protects **factories, warehouses, and office spaces**  
-- Restricts access to **high-security zones**  
-
-### 🔹 **Military & Border Surveillance**  
-- Detects **unauthorized personnel movements** in restricted areas  
-- Can be deployed for **border security and military monitoring**  
-
-### 🔹 **ATM & Bank Security**  
-- Prevents theft by detecting **suspicious movements near ATMs**  
-- Triggers **alarms during unauthorized access attempts**  
-
-### 🔹 **Smart Parking & Access Control**  
-- Monitors **vehicle entry and exit** in **parking lots**  
-- Can trigger **automated gates or barriers**  
-
-### 🔹 **Wildlife & Agricultural Monitoring**  
-- Tracks **animal movement in restricted farming areas**  
-- Helps in **wildlife conservation and anti-poaching efforts**  
-
-### 🔹 **Hospital & Elderly Care Monitoring**  
-- Detects **falls or unusual movement patterns** for patient safety  
-- Can be used in **elderly care facilities for security and monitoring**  
+### 🔹 Home Security
+- -> Detects intruders in residences, apartments, and gated communities
+- -> Integrates with smart home systems for real-time alerts
+### 🔹 Industrial & Commercial Security
+- -> Safeguards factories, warehouses, and office premises
+- -> Controls access to restricted and high-security areas
+### 🔹 Military & Border Surveillance
+- -> Monitors unauthorized movements in restricted zones
+- -> Supports border security and military intelligence operations
+### 🔹 ATM & Bank Protection
+- -> Identifies suspicious activity near ATMs and vaults
+- -> Triggers instant alarms to prevent unauthorized access
+### 🔹 Smart Parking & Access Management
+- -> Regulates vehicle entry and exit in parking facilities
+- -> Automates barriers, gates, and restricted access points
+### 🔹 Wildlife Conservation & Agricultural Security
+- -> Tracks animal movement in protected zones and farmlands
+- -> Assists in anti-poaching efforts and livestock protection
+### 🔹 Healthcare & Elderly Assistance
+- -> Detects falls, abnormal movements, or patient distress
+- -> Enhances security and monitoring in hospitals and elder care facilities
 
 ---
 
-## 🏗️ Future Enhancements  
+#### Future Enhancements  
 
-🔹 **AI-powered detection** for enhanced accuracy  
-🔹 **Wireless connectivity** for remote alerts and monitoring  
-🔹 **Cloud-based integration** for centralized security control  
-🔹 **Multi-sensor networking** for broader coverage  
+🔹 **AI-driven detection** for improved precision and object classification  
+🔹 **Wireless communication** for seamless remote alerts and real-time monitoring  
+🔹 **Cloud integration** for centralized data analysis and security management  
+🔹 **Multi-sensor collaboration** to expand coverage and enhance threat detection
 
 ---
-
-## 🚀 Installation & Setup  
-
-### 1️⃣ **Clone this Repository**  
-```bash
-git clone https://github.com/your-repo/intruder-detection-ir-sensor.git
-cd intruder-detection-ir-sensor
- ```
 
 </details>
 
