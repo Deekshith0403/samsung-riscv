@@ -638,8 +638,8 @@ Designed for **efficiency, scalability, and cost-effectiveness**, this system ca
 | **Ultrasonic Sensor** |
 | **VCC**| 3.3V |
 | **ground**| gnd |
-| ** trig pin** | PD4 |
-| ** Echo pin** | PD2 |
+| **trig pin** | PD4 |
+| **Echo pin** | PD2 |
 
 ---
 
