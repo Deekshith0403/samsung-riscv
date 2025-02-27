@@ -688,112 +688,95 @@ This system is highly adaptable, making it suitable for a wide range of applicat
 </details>
 
 <details>
-<summary><b>Task 6:</b> Intruder Detection using IR Sensor</summary>   
+<summary><b>Task 6:</b> Intruder Detection using Ultrasonic Sensor</summary>   
 <br>
+   
 # Intruder Detection using IR Sensor
 
 ## Overview
-This project is part of Task 6 of the Samsung RISC-V program. The objective is to design an intruder detection system using an IR sensor, a buzzer, and an LED. When an intruder is detected, the system activates an alarm (buzzer) and visual alert (LED) to notify about unauthorized access.
+This project is part of Task 6 of the Samsung RISC-V program. The objective is to design an intruder detection system using an Ultrasonic sensor, and  an LED. When an intruder is detected, the system activates an alarm (buzzer) and visual alert (LED) to notify about unauthorized access.
 
-![alt text](image.png)
-
-![alt text](image-2.png)
-
-![alt text](image-1.png)
+![circuit_diagram](https://github.com/user-attachments/assets/a75585a8-893d-4575-9f1f-d7eeffc70391)
 
 ## Components Required:
 
 1. VSD Squadron Mini
-2. IR Sensor
-3. Buzzer
-4. LED
-5. 330 ohm Resistor
-6. Jumper wires
-7. Breadboard
+2. Ultrasonic Sensor
+3. LED
+4. 220 ohm Resistor
+5. Jumper wires
+6. Breadboard
 
 ## Pin Connections:
 
-| **Component** | **PIN on Board** |
+| **Component** | **Pin on Board** |
 |--------------|------------------|
-| LED         | Pin 6             |
-| Buzzer      | Pin 5             |
-| IR Sensor   | Pin 4             |
+| **LED**      | PD3 |
+| **Ultrasonic Sensor** |
+| **VCC**| 3.3V |
+| **ground**| gnd |
+| **trig pin** | PD4 |
+| **Echo pin** | PD2 |
 
 ## Working Principle:
-The IR sensor detects an object in its proximity. When an intruder is detected:
-- The sensor sends a signal to the microcontroller.
-- The microcontroller processes the signal and turns ON the LED and buzzer.
-- The system remains in an alert state until the intruder is no longer detected.
+The system functions by emitting a brief ultrasonic pulse via **PD2** and detecting its echo through **PD4**. **When an object is within range, the pulse is reflected back to the sensor, generating a high signal on the ECHO pin**. Upon detection, the processor activates an LED, notifying the user of the object's presence.
 
 ## Code Implementation:
+---
 The program will be written in C and deployed on the VSD Squadron Mini board. It will read the sensor input and control the LED and buzzer accordingly.
+
+### API Reference:
+- USART_Printf_Init() : Initializes the USART peripheral for debugging and output.
+- Delay_Ms() : Generates a millisecond delay, useful for timing and sensor control.
+- GPIO_ReadInputDataBit() : Reads the state of an input pin.
+- GPIO_WriteBit() : Sets or clears a specific output pin, used for controlling the LED and the ultrasonic sensor’s trigger.
+  
 ```bash
 #include <ch32v00x.h>
 #include <debug.h>
 
-void GPIO_Config(void)
-{
-GPIO_InitTypeDef GPIO_InitStructure = {0}; //structure variable GPIO_InitStructure of type GPIO_InitTypeDef which is used for GPIO configuration.
+void GPIO_Config(void) {
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
 
-RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE); // to Enable the clock for Port C
-//pin 4 OUT PIN FOR IR SENSOR
-GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 ; // Defines which Pin to configure
-GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; // Defines Input Type
-GPIO_Init(GPIOC, &GPIO_InitStructure);
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE);
 
-//Pin 5 for Buzzer
-GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 ; // Defines which Pin to configure
-GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; // Defines Output Type
-GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; // Defines speed
-GPIO_Init(GPIOC, &GPIO_InitStructure);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_Init(GPIOD, &GPIO_InitStructure);
 
-//pin 6 IS LED PIN
-GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 ; //
-GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; // Defines Output Type
-GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; // Defines speed
-
-GPIO_Init(GPIOC, &GPIO_InitStructure);
-
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOD, &GPIO_InitStructure);
 }
 
+int main(void) {
+    uint8_t echo_status = 0;
 
-int main(void)
-{
-uint8_t IR = 0;
-uint8_t set=1;
-uint8_t reset=0;
-NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);// Configuring NVIC priority group
-SystemCoreClockUpdate();// Update System Core Clock
-GPIO_Config();//Call GPIO configuration function
+    SystemCoreClockUpdate();
+    Delay_Init();
+    GPIO_Config();
 
-while(1)
-{
-    IR = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_4);
-    if (IR==1)
-    {
-        //If IR sensor detects, then Buzzer and LED will be ON
-        GPIO_WriteBit(GPIOC, GPIO_Pin_6, set);
-        GPIO_WriteBit(GPIOC, GPIO_Pin_5, set);
+    while (1) {
+        GPIO_WriteBit(GPIOD, GPIO_Pin_2, SET);
+        Delay_Ms(10);
+        GPIO_WriteBit(GPIOD, GPIO_Pin_2, RESET);
+
+        echo_status = GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_4);
+
+        if (echo_status == 1) {
+            GPIO_WriteBit(GPIOD, GPIO_Pin_3, RESET);
+            Delay_Ms(2500);
+        } else {
+            GPIO_WriteBit(GPIOD, GPIO_Pin_3, SET);
         }
-    
-    else{
-        //If IR sensor doesn't detect, then Buzzer and LED will be OFF
-        GPIO_WriteBit(GPIOC, GPIO_Pin_6,reset);
-        GPIO_WriteBit(GPIOC, GPIO_Pin_5,reset);
     }
-
-    }
-    
 }
+
 ```
-## Applications:
-- Home security systems
-- Automated door security
-- Industrial safety systems
+---
+![Intruder_detectior_2](https://github.com/user-attachments/assets/b738bb7d-3bc7-4bff-81a3-190444cecfdf)
 
-## Future Improvements:
-- Integration with GSM module for remote alerts
-- Implementation of a camera module for image capturing
-- Enhancing detection range with multiple sensors
 
+![Intruder_detectior_1](https://github.com/user-attachments/assets/b11e4882-100c-44e9-86b0-4ee2ee704114)
   </details>
